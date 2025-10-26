@@ -225,6 +225,28 @@ async function handleApplicationSubmit(event) {
     
     // Get form data
     const formData = new FormData(form);
+    
+    // Get logo file and convert to Base64
+    const logoFile = document.getElementById('app_logo').files[0];
+    let logoBase64 = null;
+    
+    if (logoFile) {
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="loading"></span> Processing logo...';
+        
+        try {
+            // Convert file to Base64
+            logoBase64 = await fileToBase64(logoFile);
+        } catch (error) {
+            console.error('Error converting logo:', error);
+            alert('Error processing logo file. Please try again.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+            return;
+        }
+    }
+    
     const data = {
         businessName: formData.get('business_name'),
         contactName: formData.get('contact_name'),
@@ -234,16 +256,13 @@ async function handleApplicationSubmit(event) {
         quantity: formData.get('quantity'),
         acknowledged: formData.get('acknowledge') === 'on',
         customerType: 'NEW',
-        submittedAt: new Date().toISOString()
+        submittedAt: new Date().toISOString(),
+        // Logo data
+        logoFileName: logoFile ? logoFile.name : null,
+        logoFileSize: logoFile ? logoFile.size : null,
+        logoFileType: logoFile ? logoFile.type : null,
+        logoBase64: logoBase64 // Base64 encoded file
     };
-    
-    // Get logo file info
-    const logoFile = document.getElementById('app_logo').files[0];
-    if (logoFile) {
-        data.logoFileName = logoFile.name;
-        data.logoFileSize = logoFile.size;
-        data.logoFileType = logoFile.type;
-    }
     
     // Show loading state
     submitBtn.disabled = true;
@@ -271,6 +290,16 @@ async function handleApplicationSubmit(event) {
         submitBtn.disabled = false;
         submitBtn.textContent = originalBtnText;
     }
+}
+
+// Helper function to convert file to Base64
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
 }
 
 // Handle Order Form Submit (Existing Customer)
