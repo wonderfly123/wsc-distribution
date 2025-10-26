@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branded Coconut Order Form - Specialty Produce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <img src="https://specialtyproduce.com/images/sp-logo-mobile.png" alt="Specialty Produce" class="logo">
+            <h1>Branded Coconut Order Form</h1>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab('application')">New Customer Application</button>
+            <button class="tab-button" onclick="openTab('order')">Existing Customer Order</button>
+        </div>
+
+        <!-- Application Tab (New Customers) -->
+        <div id="application" class="tab-content active">
+            <div class="delivery-notice">
+                <strong>Delivery Schedule:</strong> We deliver every Monday and Wednesday
+            </div>
+            
+            <form id="applicationForm" onsubmit="handleApplicationSubmit(event)">
+                <h2>New Customer Application</h2>
+                
+                <div class="form-group">
+                    <label for="app_business_name">Business Name *</label>
+                    <input type="text" id="app_business_name" name="business_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="app_contact_name">Contact Name *</label>
+                    <input type="text" id="app_contact_name" name="contact_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="app_email">Email *</label>
+                    <input type="email" id="app_email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="app_phone">Phone *</label>
+                    <input type="tel" id="app_phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="app_address">Delivery Address *</label>
+                    <textarea id="app_address" name="address" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="app_quantity">Quantity *</label>
+                    <input type="number" id="app_quantity" name="quantity" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="app_logo">Upload Logo *</label>
+                    <div class="file-requirements">
+                        <strong>Requirements:</strong>
+                        <ul>
+                            <li>Accepted formats: PNG, JPG, SVG</li>
+                            <li>Maximum file size: 2MB</li>
+                        </ul>
+                    </div>
+                    <input type="file" id="app_logo" name="logo" accept=".png,.jpg,.jpeg,.svg" required onchange="validateLogoFile(this)">
+                    <div id="logo-error" class="error-message"></div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="app_acknowledge" name="acknowledge" required>
+                        <span>I acknowledge that once my logo is approved, the lead time is 14 business days *</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Application</button>
+            </form>
+        </div>
+
+        <!-- Order Form Tab (Existing Customers) -->
+        <div id="order" class="tab-content">
+            <div class="delivery-notice">
+                <strong>Delivery Schedule:</strong> We deliver every Monday and Wednesday
+            </div>
+
+            <form id="orderForm" onsubmit="handleOrderSubmit(event)">
+                <h2>Existing Customer Order</h2>
+                
+                <!-- Email Lookup -->
+                <div class="form-group">
+                    <label for="order_email">Email *</label>
+                    <div class="email-lookup">
+                        <input type="email" id="order_email" name="email" required>
+                        <button type="button" onclick="verifyCustomer()" class="verify-btn">Verify Account</button>
+                    </div>
+                    <div id="customer-status" class="status-message"></div>
+                </div>
+
+                <!-- Customer Info Display (Hidden until verified) -->
+                <div id="customer-info" class="customer-info" style="display: none;">
+                    <div class="success-box">
+                        <h3>✓ Account Found!</h3>
+                        <p><strong>Business:</strong> <span id="display_business_name"></span></p>
+                        <p><strong>Logo on file:</strong></p>
+                        <div id="logo-preview"></div>
+                    </div>
+
+                    <!-- Pre-filled fields (editable) -->
+                    <div class="form-group">
+                        <label for="order_contact_name">Contact Name *</label>
+                        <input type="text" id="order_contact_name" name="contact_name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="order_phone">Phone *</label>
+                        <input type="tel" id="order_phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="order_address">Delivery Address *</label>
+                        <textarea id="order_address" name="address" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="order_quantity">Quantity *</label>
+                        <input type="number" id="order_quantity" name="quantity" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="order_pickup_date">Pickup Date (Monday or Wednesday) *</label>
+                        <input type="date" id="order_pickup_date" name="pickup_date" required onchange="validatePickupDate(this)">
+                        <small>Must be at least 4 business days from today and on a Monday or Wednesday</small>
+                        <div id="pickup-date-error" class="error-message"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Order</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Success Message -->
+        <div id="success-message" class="success-message" style="display: none;">
+            <h3>✓ Success!</h3>
+            <p id="success-text"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

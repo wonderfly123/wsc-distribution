@@ -1,0 +1,391 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #00a651 0%, #008c44 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header .logo {
+    max-width: 250px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    background-color: #00a651;
+    border-bottom: 3px solid #008c44;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-button:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.tab-button.active {
+    background-color: white;
+    color: #00a651;
+    border-bottom: 3px solid #00a651;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    padding: 30px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Delivery Notice */
+.delivery-notice {
+    background-color: #e8f5e9;
+    border-left: 4px solid #00a651;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 4px;
+}
+
+.delivery-notice strong {
+    color: #00a651;
+}
+
+/* Forms */
+form h2 {
+    color: #00a651;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #00a651;
+}
+
+textarea {
+    resize: vertical;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* File Upload */
+input[type="file"] {
+    padding: 10px;
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+    width: 100%;
+    cursor: pointer;
+}
+
+input[type="file"]:hover {
+    border-color: #00a651;
+}
+
+.file-requirements {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.file-requirements strong {
+    color: #00a651;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.file-requirements ul {
+    margin-left: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.file-requirements li {
+    margin-bottom: 5px;
+}
+
+/* Checkbox */
+.checkbox-group {
+    margin: 25px 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.checkbox-label span {
+    flex: 1;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* Email Lookup */
+.email-lookup {
+    display: flex;
+    gap: 10px;
+}
+
+.email-lookup input {
+    flex: 1;
+}
+
+.verify-btn {
+    padding: 12px 24px;
+    background-color: #00a651;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.verify-btn:hover {
+    background-color: #008c44;
+}
+
+.verify-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Customer Info Display */
+.customer-info {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.success-box {
+    background-color: #e8f5e9;
+    border: 2px solid #00a651;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.success-box h3 {
+    color: #00a651;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.success-box p {
+    margin-bottom: 10px;
+}
+
+#logo-preview {
+    margin-top: 10px;
+}
+
+#logo-preview img {
+    max-width: 200px;
+    max-height: 100px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    background: white;
+}
+
+/* Status Messages */
+.status-message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.status-message.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef5350;
+}
+
+.status-message.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #66bb6a;
+}
+
+.error-message {
+    color: #c62828;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #00a651;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #008c44;
+}
+
+.submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Success Message */
+.success-message {
+    padding: 30px;
+    text-align: center;
+    animation: fadeIn 0.5s;
+}
+
+.success-message h3 {
+    color: #00a651;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.success-message p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Small text */
+small {
+    display: block;
+    margin-top: 5px;
+    color: #666;
+    font-size: 13px;
+}
+
+/* Loading spinner */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+    }
+    
+    header {
+        padding: 20px;
+    }
+    
+    header h1 {
+        font-size: 22px;
+    }
+    
+    .tab-content {
+        padding: 20px;
+    }
+    
+    .email-lookup {
+        flex-direction: column;
+    }
+    
+    .verify-btn {
+        width: 100%;
+    }
+}
