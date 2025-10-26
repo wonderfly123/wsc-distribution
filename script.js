@@ -250,17 +250,16 @@ async function handleApplicationSubmit(event) {
     submitBtn.innerHTML = '<span class="loading"></span> Submitting...';
     
     try {
-        // Send to Zapier webhook
+        // Send to Zapier webhook - no custom headers to avoid CORS
         const response = await fetch(CONFIG.ZAPIER_NEW_CUSTOMER_WEBHOOK, {
             method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
             body: JSON.stringify(data)
         });
         
-        // With no-cors mode, we can't check response status, so assume success
+        if (!response.ok) {
+            throw new Error('Failed to submit application');
+        }
+        
         // Show success message
         showSuccess('Application submitted successfully! We will review your logo and contact you within 1 business day.');
         form.reset();
@@ -307,17 +306,16 @@ async function handleOrderSubmit(event) {
     submitBtn.innerHTML = '<span class="loading"></span> Submitting Order...';
     
     try {
-        // Send to Zapier webhook
+        // Send to Zapier webhook - no custom headers to avoid CORS
         const response = await fetch(CONFIG.ZAPIER_EXISTING_CUSTOMER_WEBHOOK, {
             method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
             body: JSON.stringify(data)
         });
         
-        // With no-cors mode, we can't check response status, so assume success
+        if (!response.ok) {
+            throw new Error('Failed to submit order');
+        }
+        
         // Show success message
         showSuccess(`Order submitted successfully! Your ${data.quantity} branded coconuts will be ready for pickup on ${data.pickupDate}. You will receive a confirmation email shortly.`);
         form.reset();
