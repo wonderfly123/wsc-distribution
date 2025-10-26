@@ -6,7 +6,7 @@ const CONFIG = {
     
     // Zapier webhook URLs - REPLACE THESE WITH YOUR ACTUAL ZAPIER WEBHOOK URLS
     ZAPIER_NEW_CUSTOMER_WEBHOOK: 'https://hooks.zapier.com/hooks/catch/23412469/ui2ngna/',
-    ZAPIER_EXISTING_CUSTOMER_WEBHOOK: 'https://hooks.zapier.com/hooks/catch/YOUR_WEBHOOK_ID_HERE'
+    ZAPIER_EXISTING_CUSTOMER_WEBHOOK: 'https://hooks.zapier.com/hooks/catch/23412469/ui2jvto/'
 };
 
 // Store customer data after verification
